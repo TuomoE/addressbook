@@ -19,13 +19,15 @@ import javafx.scene.layout.VBox;
  */
 public class TextAreaPartial extends VBox implements EventHandler<ActionEvent>{
     private final Label nameLabel = new Label("Tekstikenttä");
-    private final TextArea nameField = new TextArea();
+    private final TextArea nameArea = new TextArea();
     
     public TextAreaPartial () {
         VBox.setMargin(this, new Insets(10,10,10,10));
-        nameField.setPrefSize(200, 200);
+        nameArea.setPrefSize(200, 200);
         this.getChildren().add(nameLabel);
-        this.getChildren().add(nameField);
+        this.getChildren().add(nameArea);
+        
+        
     }
 
     @Override
