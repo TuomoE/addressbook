@@ -6,11 +6,16 @@
 package addressbook;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -21,22 +26,32 @@ public class Addressbook extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
+        // root on päälayout
+        BorderPane root = new BorderPane();
         
-        Scene scene = new Scene(root, 300, 250);
+        root.setStyle("-fx-background-color: #339698");
+           
+        // lisätään komponenttien layoutit roottiin
+ //       root.getChildren().add(new TextFieldPartial());
+ //       root.getChildren().add(new ButtonPartial());
+        VBox vbox = new VBox();
+        TextAreaPartial textarea = new TextAreaPartial();
+        TextFieldPartial textfield = new TextFieldPartial();
         
-        primaryStage.setTitle("Hello World!");
+     //   root.setLeft(new TextFieldPartial());
+        ButtonPartial buttons = new ButtonPartial();
+        buttons.setAlignment(Pos.BOTTOM_CENTER);
+        vbox.getChildren().add(textfield);
+  //      vbox.getChildren().add(buttons);
+        root.setBottom(buttons);
+        vbox.setSpacing(20);
+        root.setLeft(vbox);
+        
+        root.setRight(textarea);
+        Scene scene = new Scene(root);
+        
+        primaryStage.setTitle("Idea");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
