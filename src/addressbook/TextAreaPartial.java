@@ -34,4 +34,7 @@ public class TextAreaPartial extends VBox implements EventHandler<ActionEvent>{
     public void handle(ActionEvent t) {
         
     }
+    public String getTextArea () {
+        return this.nameArea.getText();
+    }
 }

@@ -5,6 +5,7 @@
  */
 package addressbook;
 
+import java.util.ArrayList;
 import javafx.application.Platform;
 
 
@@ -12,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,29 +23,40 @@ public class ButtonPartial extends HBox implements EventHandler<ActionEvent> {
     
     
     private final Button closeButton = new Button("Sulje");
-    private final Button saveButton = new Button("Tallenna");
-    private final Button printButton = new Button("Tulosta");
-    
+    private static final Button saveButton = new Button("Tallenna");
+ 
+    protected static final ArrayList<User> userInfo = new ArrayList();
+    private TextAreaPartial users;
+    private TextFieldPartial partial;
     
     public ButtonPartial () {
+        this.users = users;
+        this.partial = partial;
         this.setStyle("-fx-spacing:10;-fx-padding:10");
         this.getChildren().add(closeButton);
         this.getChildren().add(saveButton);
-        this.getChildren().add(printButton);
         closeButton.setOnAction(this);
         saveButton.setOnAction(this);
-        printButton.setOnAction(this);
     }
     
+    @Override
     public void handle(ActionEvent t) {
-        if (t.getSource().equals(printButton)) {
-            System.out.println("Ohjelma: " );
-        }
         if(t.getSource().equals(closeButton)) {
             Platform.exit();
         }
         if  (t.getSource().equals(saveButton)) {
-            System.out.println("********Tallennus****");
+            if(TextFieldPartial.isEmptyFields()){
+                    JOptionPane.showMessageDialog(null, "All fields must have value!");
+            }
+            else{
+                    //Cache object in arraylist
+                   userInfo.add(TextFieldPartial.getUserInfo());
+                    TextFieldPartial.clearFields();
+            }
         }
+    }
+    public static final void toggleSaveButton(boolean setVisible){
+        
+        saveButton.setVisible(setVisible);
     }
 }

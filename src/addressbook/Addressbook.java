@@ -9,13 +9,8 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -30,28 +25,21 @@ public class Addressbook extends Application {
         // root on päälayout
         BorderPane root = new BorderPane();
         
-        root.setStyle("-fx-background-color: #339698");
-           
-        // lisätään komponenttien layoutit roottiin
- //       root.getChildren().add(new TextFieldPartial());
- //       root.getChildren().add(new ButtonPartial());
-        VBox vbox = new VBox();
-        TextAreaPartial textarea = new TextAreaPartial();
-        TextFieldPartial textfield = new TextFieldPartial();
-        
-     //   root.setLeft(new TextFieldPartial());
+        TabPanePartial tabPane = new TabPanePartial();
         ButtonPartial buttons = new ButtonPartial();
-        buttons.setAlignment(Pos.BOTTOM_CENTER);
-        vbox.getChildren().add(textfield);
-  //      vbox.getChildren().add(buttons);
+        
+        root.setCenter(tabPane);
         root.setBottom(buttons);
-        vbox.setSpacing(20);
-        root.setLeft(vbox);
         
-        root.setRight(textarea);
-        Scene scene = new Scene(root);
+        BorderPane.setMargin(root.getBottom(), new Insets(10,10,10,10));
+        Scene scene = new Scene(root, 600, 400);
         
-        primaryStage.setTitle("Idea");
+      
+        
+     
+        
+        
+        primaryStage.setTitle("Addressbook");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
